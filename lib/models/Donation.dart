@@ -32,6 +32,4 @@ class Donation{
 
   String get userName => _userName;
   set userName(String newName) => _userName = newName;
-
-
 }

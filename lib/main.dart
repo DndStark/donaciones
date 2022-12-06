@@ -126,11 +126,8 @@ class _LoginDemoState extends State<LoginDemo> {
                   User?  user = await Authenticator.initSession(
                     context: context
                   );
-                  print(user?.email);
-                  print(user?.displayName);
-                  print(user?.uid);
                   if(user != null)
-                    Navigator.pushNamed(context, 'main_page');
+                    print(user);
                 },
                 child: Image.asset('assets/images/google_icon.png'),
               ),
@@ -145,7 +142,9 @@ class _LoginDemoState extends State<LoginDemo> {
                   primary: Colors.black,
                 ),
                 onPressed: () async{
-                  Navigator.pushNamed(context, 'dono_page');
+                  User?  user = await Authenticator.initSessionFacebook(
+                      context: context
+                  );
                 },
                 child: Image.asset('assets/images/facebook_icon.png'),
               ),

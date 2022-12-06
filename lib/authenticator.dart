@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 class Authenticator{
 
@@ -25,6 +26,27 @@ class Authenticator{
         print("Error en la autenticación");
       }
     }
+  }
+
+  static Future<User?> initSessionFacebook({required BuildContext context}) async {
+    FacebookAuth facebook = FacebookAuth.instance;
+    User? user;
+    //final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    facebook.login(
+      permissions: ["public_profile", "email"]
+    ).then((value) =>
+        facebook.getUserData().then((userData) {
+          print(userData);
+          return userData;
+        })
+    );
+
+    //final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken.0.0token);
+
+
+
+
 
   }
 }
