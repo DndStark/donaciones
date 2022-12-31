@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
 class Authenticator{
 
   static Future<User?> initSession({required BuildContext context}) async {
@@ -41,12 +42,11 @@ class Authenticator{
           return userData;
         })
     );
+  }
 
-    //final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken.0.0token);
-
-
-
-
-
+  static void logoutSession() async{
+    await FirebaseAuth.instance.signOut();
+    GoogleSignIn google = GoogleSignIn();
+    google.signOut();
   }
 }
